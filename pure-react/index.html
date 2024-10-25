@@ -11,8 +11,17 @@
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script>
+      // pure react example
       function App() {
-        return React.createElement("h1", null, "Hello React!");
+        const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+        React.useEffect(() => {
+          const timer = setInterval(
+            () => setTime(new Date().toLocaleTimeString()),
+            1000
+          );
+          return () => clearInterval(timer);
+        }, []);
+        return React.createElement("p", null, `Hello React! it's ${time}`);
       }
       const root = ReactDOM.createRoot(document.getElementById("root"));
       root.render(React.createElement(App));
