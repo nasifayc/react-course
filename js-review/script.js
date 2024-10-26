@@ -170,3 +170,11 @@ const updatedBook = {
   hasMovieAdaptation: "2024-06-05",
 };
 console.log(updatedBook);
+
+const getYear = (str) => str.split("-")[0];
+
+const summary = `The book ${title} has ${
+  pages >= 1000 ? "more than" : "less than"
+} thousand pages. year ${getYear(publicationDate)} `;
+
+console.log(summary);
