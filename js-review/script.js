@@ -182,8 +182,8 @@ console.log(summary);
 // Optional chaining
 
 const getBookCount = (book) => {
-  const goodReads = book.reviews.goodreads.reviewsCount;
-  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  const goodReads = book.reviews?.goodreads?.reviewsCount ?? 0;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
   return goodReads + librarything;
 };
 console.log(getBookCount(book));
