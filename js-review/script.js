@@ -147,7 +147,7 @@ function getBook(id) {
 
 // object destructuring
 
-const book = getBook(2);
+const book = getBook(3);
 // book;
 const { title, author, pages, publicationDate, genres, translations, reviews } =
   book;
@@ -178,3 +178,12 @@ const summary = `The book ${title} has ${
 } thousand pages. year ${getYear(publicationDate)} `;
 
 console.log(summary);
+
+// Optional chaining
+
+const getBookCount = (book) => {
+  const goodReads = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  return goodReads + librarything;
+};
+console.log(getBookCount(book));
