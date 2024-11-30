@@ -81,12 +81,15 @@ function Footer() {
   return <footer className="footer">{time}. We're currently open</footer>;
 }
 
-function Pizza() {
+function Pizza({ photoName, name, ingredients, price }) {
   return (
-    <div>
-      <img src="pizzas/spinaci.jpg" alt="pizza-spinaci" />
-      <h3>Pizza Spinaci</h3>
-      <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
+    <div className="pizza">
+      <img src={photoName} alt={name} />
+      <div>
+        <h3>{name}</h3>
+        <p>{ingredients}</p>
+        <span>{price}</span>
+      </div>
     </div>
   );
 }
@@ -95,9 +98,15 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      {pizzaData.map((p) => (
+        <Pizza
+          key={p.name}
+          name={p.name}
+          ingredients={p.ingredients}
+          photoName={p.photoName}
+          price={p.price}
+        />
+      ))}
     </main>
   );
 }
