@@ -78,7 +78,16 @@ function Footer() {
   // else alert("Sorry we are closed!!!!!!!!!!");
   const time = new Date().toLocaleTimeString();
 
-  return <footer className="footer">{time}. We're currently open</footer>;
+  return (
+    <footer className="footer">
+      {isOpen && (
+        <div className="order">
+          <p>We're open until {closeHour}:00. come visit us or order online</p>
+          <button className="btn">Order</button>
+        </div>
+      )}
+    </footer>
+  );
 }
 
 function Pizza({ photoName, name, ingredients, price }) {
@@ -98,15 +107,17 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      {pizzaData.map((p) => (
-        <Pizza
-          key={p.name}
-          name={p.name}
-          ingredients={p.ingredients}
-          photoName={p.photoName}
-          price={p.price}
-        />
-      ))}
+      <ul className="pizzas">
+        {pizzaData.map((p) => (
+          <Pizza
+            key={p.name}
+            name={p.name}
+            ingredients={p.ingredients}
+            photoName={p.photoName}
+            price={p.price}
+          />
+        ))}
+      </ul>
     </main>
   );
 }
