@@ -26,12 +26,13 @@ function ProfileInfo({ name, about, skills }) {
 }
 
 function SkillsList({ skills }) {
+  // console.log(skills);
   return (
     <div>
       <ul className="skill-list">
         {skills.map((s, i) => (
           <li key={i}>
-            <SkillButton skill={s} index={i} />
+            <SkillButton {...s} />
           </li>
         ))}
       </ul>
@@ -39,9 +40,12 @@ function SkillsList({ skills }) {
   );
 }
 
-function SkillButton({ skill, index }) {
-  const colors = ["#FF5733", "#33FF57", "#3357FF", "#F1C40F", "#8E44AD"];
-  const buttonColor = colors[index % colors.length];
-
-  return <button style={{ backgroundColor: buttonColor }}>{skill}</button>;
+function SkillButton({ name, level, color }) {
+  console.log(name, level, color);
+  return (
+    <button style={{ backgroundColor: color }}>
+      {name}
+      {level === "advanced" ? "💀" : level === "intermediate" ? "👍" : "🫡"}
+    </button>
+  );
 }

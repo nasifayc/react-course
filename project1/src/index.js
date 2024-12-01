@@ -100,14 +100,14 @@ function Order({ closeHour }) {
   );
 }
 
-function Pizza({ photoName, name, ingredients, price }) {
+function Pizza({ pizza }) {
   return (
-    <div className="pizza">
-      <img src={photoName} alt={name} />
+    <div className={`pizza ${pizza.soldOut ? "sold-out" : ""}`}>
+      <img src={pizza.photoName} alt={pizza.name} />
       <div>
-        <h3>{name}</h3>
-        <p>{ingredients}</p>
-        <span>{price}</span>
+        <h3>{pizza.name}</h3>
+        <p>{pizza.ingredients}</p>
+        <span>{pizza.soldOut ? "SOLD OUT" : pizza.price}</span>
       </div>
     </div>
   );
@@ -126,13 +126,7 @@ function Menu() {
           </p>
           <ul className="pizzas">
             {pizzaData.map((p) => (
-              <Pizza
-                key={p.name}
-                name={p.name}
-                ingredients={p.ingredients}
-                photoName={p.photoName}
-                price={p.price}
-              />
+              <Pizza key={p.name} pizza={p} />
             ))}
           </ul>
         </>
