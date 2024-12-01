@@ -80,13 +80,23 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {isOpen && (
-        <div className="order">
-          <p>We're open until {closeHour}:00. come visit us or order online</p>
-          <button className="btn">Order</button>
-        </div>
+      {isOpen ? (
+        <Order closeHour={closeHour} />
+      ) : (
+        <p>
+          We're welcome to have you betwenn {openHour}:00 and {closeHour}:00
+        </p>
       )}
     </footer>
+  );
+}
+
+function Order({ closeHour }) {
+  return (
+    <div className="order">
+      <p>We're open until {closeHour}:00. come visit us or order online</p>
+      <button className="btn">Order</button>
+    </div>
   );
 }
 
@@ -104,20 +114,31 @@ function Pizza({ photoName, name, ingredients, price }) {
 }
 
 function Menu() {
+  const numPizza = pizzaData.length;
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <ul className="pizzas">
-        {pizzaData.map((p) => (
-          <Pizza
-            key={p.name}
-            name={p.name}
-            ingredients={p.ingredients}
-            photoName={p.photoName}
-            price={p.price}
-          />
-        ))}
-      </ul>
+      {numPizza > 0 ? (
+        <>
+          <p>
+            Authentic Italian cuisine. 6 creative dishes to choose from. All
+            from our stone oven, all organic, all delicious.
+          </p>
+          <ul className="pizzas">
+            {pizzaData.map((p) => (
+              <Pizza
+                key={p.name}
+                name={p.name}
+                ingredients={p.ingredients}
+                photoName={p.photoName}
+                price={p.price}
+              />
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p>We're currently out of service. please come back later!</p>
+      )}
     </main>
   );
 }
