@@ -12,21 +12,21 @@ export default function App() {
 
   const handlePreviousClick = () => {
     if (step > 0) {
-      setStep(step - 1);
+      setStep((s) => s - 1);
     }
     console.log(step);
   };
 
   const handleNextClick = () => {
     if (step < messages.length - 1) {
-      setStep(step + 1);
+      setStep((s) => s + 1);
     }
     console.log(step);
   };
 
   return (
     <>
-      <button className="close" onClick={() => setOpen(!isOpen)}>
+      <button className="close" onClick={() => setOpen((is) => !is)}>
         &times;
       </button>
       {isOpen && (
